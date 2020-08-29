@@ -5,7 +5,7 @@
 #if canImport(UIKit)
 import UIKit
 
-class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
+public class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private let animationDuration: TimeInterval
     
     init(duration: TimeInterval) {
