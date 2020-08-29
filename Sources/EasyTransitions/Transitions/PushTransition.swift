@@ -9,16 +9,17 @@ public class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private let animationDuration: TimeInterval
     
     init(duration: TimeInterval) {
-        self.animationDuration = animationDuration
+        self.animationDuration = duration
     }
     
-    func transitionDuration(
+    public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         animationDuration
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(
+        using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         guard let toView = transitionContext.view(forKey: .to), let fromView = transitionContext.view(forKey: .from) else { return }
         
