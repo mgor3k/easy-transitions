@@ -6,16 +6,16 @@
 import UIKit
 
 public class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
-    private let animationDuration: TimeInterval
+    private let duration: TimeInterval
     
-    init(duration: TimeInterval) {
-        self.animationDuration = duration
+    public init(duration: TimeInterval) {
+        self.duration = duration
     }
     
     public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
-        animationDuration
+        duration
     }
     
     public func animateTransition(
@@ -28,7 +28,7 @@ public class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
         let startingFrame = CGRect(x: 0, y: toView.frame.height, width: toView.frame.width, height: toView.frame.height)
         toView.frame = startingFrame
         
-        UIView.animate(withDuration: animationDuration,
+        UIView.animate(withDuration: duration,
                        delay: 0,
                        usingSpringWithDamping: 1,
                        initialSpringVelocity: 1,
