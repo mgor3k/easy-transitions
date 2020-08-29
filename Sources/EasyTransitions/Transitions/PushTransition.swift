@@ -7,9 +7,11 @@ import UIKit
 
 public class PushTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private let duration: TimeInterval
+    private let type: PushTransitionType
     
-    public init(duration: TimeInterval) {
+    public init(duration: TimeInterval, type: PushTransitionType) {
         self.duration = duration
+        self.type = type
     }
     
     public func transitionDuration(
