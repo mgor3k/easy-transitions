@@ -6,6 +6,10 @@
 import UIKit
 
 public class OverlayTransition: NSObject, UIViewControllerAnimatedTransitioning {
+    private enum Constants {
+        static let transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+    }
+    
     private let configuration: OverlayTransitionConfiguration
     public var mode: OverlayTransitionMode = .present
     
@@ -55,9 +59,9 @@ public extension OverlayTransition {
         overlay.isHidden = false
         
         if mode == .present {
-            overlay.transform = .init(scaleX: 0.001, y: 0.001)
+            overlay.transform = Constants.transform
             targetView.center = configuration.startingPoint
-            targetView.transform = .init(scaleX: 0.001, y: 0.001)
+            targetView.transform = Constants.transform
             targetView.alpha = 0
             containerView.addSubview(overlay)
             containerView.addSubview(targetView)
@@ -71,8 +75,8 @@ public extension OverlayTransition {
                 targetView.alpha = 1
                 targetView.center = originalCenter
             case .dismiss:
-                self.overlay.transform = .init(scaleX: 0.001, y: 0.001)
-                targetView.transform = .init(scaleX: 0.001, y: 0.001)
+                self.overlay.transform = Constants.transform
+                targetView.transform = Constants.transform
                 targetView.center = self.configuration.startingPoint
                 targetView.alpha = 0
             }
