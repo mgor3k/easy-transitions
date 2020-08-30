@@ -30,8 +30,8 @@ public class TopToBottomTransition: NSObject, UIViewControllerAnimatedTransition
         
         let startingFrame = CGRect(
             x: 0,
-            y: toView.frame.height,
-            width: -toView.frame.width,
+            y: -toView.frame.height,
+            width: toView.frame.width,
             height: toView.frame.height
         )
         
