@@ -6,22 +6,17 @@
 import UIKit
 
 public class OverlayTransitionNavigationController: UINavigationController {
-    private let transitionDuration: TimeInterval
     private let transition: OverlayTransition
     
     public init(
         transitionDuration: TimeInterval = 0.5,
         startingPoint: CGPoint,
         backgroundColor: UIColor) {
-        self.transitionDuration = transitionDuration
-        
-        let configuration = OverlayTransitionConfiguration(
+        self.transition = OverlayTransition(
             duration: transitionDuration,
             startingPoint: startingPoint,
             backgroundColor: backgroundColor
         )
-        
-        self.transition = OverlayTransition(configuration: configuration)
         
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .overFullScreen

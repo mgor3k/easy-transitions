@@ -5,18 +5,30 @@
 #if canImport(UIKit)
 import UIKit
 
+public enum OverlayTransitionMode {
+    case present, dismiss
+}
+
 public class OverlayTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private enum Constants {
         static let transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
     }
+        
+    private let duration: TimeInterval
+    private let startingPoint: CGPoint
+    private let backgroundColor: UIColor
     
-    private let configuration: OverlayTransitionConfiguration
     public var mode: OverlayTransitionMode = .present
     
     private let overlay = UIView()
     
-    public init(configuration: OverlayTransitionConfiguration) {
-        self.configuration = configuration
+    public init(
+        duration: TimeInterval = 0.35,
+        startingPoint: CGPoint,
+        backgroundColor: UIColor) {
+        self.duration = duration
+        self.startingPoint = startingPoint
+        self.backgroundColor = backgroundColor
     }
 }
 
@@ -24,7 +36,7 @@ public extension OverlayTransition {
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
-        configuration.duration
+        duration
     }
     
     func animateTransition(
@@ -50,17 +62,17 @@ public extension OverlayTransition {
         overlay.frame = calculateOverlayFrame(
             originalCenter: originalCenter,
             originalSize: originalSize,
-            startingPoint: configuration.startingPoint
+            startingPoint: startingPoint
         )
         
         overlay.layer.cornerRadius = overlay.frame.size.height / 2
-        overlay.center = configuration.startingPoint
-        overlay.backgroundColor = configuration.backgroundColor
+        overlay.center = startingPoint
+        overlay.backgroundColor = backgroundColor
         overlay.isHidden = false
         
         if mode == .present {
             overlay.transform = Constants.transform
-            targetView.center = configuration.startingPoint
+            targetView.center = startingPoint
             targetView.transform = Constants.transform
             targetView.alpha = 0
             containerView.addSubview(overlay)
@@ -77,7 +89,7 @@ public extension OverlayTransition {
             case .dismiss:
                 self.overlay.transform = Constants.transform
                 targetView.transform = Constants.transform
-                targetView.center = self.configuration.startingPoint
+                targetView.center = self.startingPoint
                 targetView.alpha = 0
             }
         }
@@ -101,7 +113,7 @@ public extension OverlayTransition {
         }
         
         UIView.springAnimate(
-            duration: configuration.duration,
+            duration: duration,
             animations: animations,
             completion: completion
         )
