@@ -14,7 +14,7 @@ public class PushTransitionNavigationController: UINavigationController {
         self.transitionType = transitionType
         
         super.init(nibName: nil, bundle: nil)
-        modalPresentationStyle = .overFullScreen
+        modalPresentationStyle = .fullScreen
         transitioningDelegate = self
     }
     
