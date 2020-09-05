@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "EasyTransitions",
     platforms: [
-        .iOS(.v8)
+        .iOS(.v10)
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -23,9 +23,6 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "EasyTransitions",
-            dependencies: []),
-        .testTarget(
-            name: "EasyTransitionsTests",
-            dependencies: ["EasyTransitions"]),
+            dependencies: [])
     ]
 )
