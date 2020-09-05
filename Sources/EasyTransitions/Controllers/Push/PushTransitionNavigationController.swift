@@ -9,7 +9,9 @@ public class PushTransitionNavigationController: UINavigationController {
     private let transitionDuration: TimeInterval
     private let transitionType: PushTransitionType
     
-    public init(transitionDuration: TimeInterval, transitionType: PushTransitionType) {
+    public init(
+        transitionDuration: TimeInterval = 0.5,
+        transitionType: PushTransitionType) {
         self.transitionDuration = transitionDuration
         self.transitionType = transitionType
         
