@@ -5,9 +5,15 @@
 #if canImport(UIKit)
 import UIKit
 
+/// An example of a controller using the overlay transition.
 public class OverlayTransitionNavigationController: UINavigationController {
     private let transition: OverlayTransition
     
+    /// Initializer
+    /// - Parameters:
+    ///   - transitionDuration: Transition duration
+    ///   - startingPoint: Starting point of the transition e.g. center point of a button
+    ///   - backgroundColor: Background color of the presenting controller - it will stick out of its bounds. This should also match the buttons background for the best effect.
     public init(
         transitionDuration: TimeInterval = 0.5,
         startingPoint: CGPoint,

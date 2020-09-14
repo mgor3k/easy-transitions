@@ -5,20 +5,25 @@
 #if canImport(UIKit)
 import UIKit
 
+/// The view controller being present will come from the top pushing the presenting view controller out of the screen.
 public class TopToBottomTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private let duration: TimeInterval
     
+    /// Initializer
+    /// - Parameter duration: The total duration of the transition
     public init(duration: TimeInterval) {
         self.duration = duration
     }
-    
-    public func transitionDuration(
+}
+
+public extension TopToBottomTransition {
+    func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         duration
     }
     
-    public func animateTransition(
+    func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         guard let toView = transitionContext.view(forKey: .to),

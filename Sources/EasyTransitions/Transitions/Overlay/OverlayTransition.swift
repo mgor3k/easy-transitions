@@ -9,6 +9,7 @@ public enum OverlayTransitionMode {
     case present, dismiss
 }
 
+/// Circular overlay transition.
 public class OverlayTransition: NSObject, UIViewControllerAnimatedTransitioning {
     private enum Constants {
         static let transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
@@ -18,10 +19,16 @@ public class OverlayTransition: NSObject, UIViewControllerAnimatedTransitioning 
     private let startingPoint: CGPoint
     private let backgroundColor: UIColor
     
+    /// The current transition type - change this for dismiss
     public var mode: OverlayTransitionMode = .present
     
     private let overlay = UIView()
     
+    /// Initializer
+    /// - Parameters:
+    ///   - duration: Transition duration
+    ///   - startingPoint: Starting point of the transition e.g. center point of a button
+    ///   - backgroundColor: Background color of the presenting controller - it will stick out of its bounds. This should also match the buttons background for the best effect.
     public init(
         duration: TimeInterval = 0.35,
         startingPoint: CGPoint,

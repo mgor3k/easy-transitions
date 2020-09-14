@@ -5,10 +5,15 @@
 #if canImport(UIKit)
 import UIKit
 
+/// An example of a controller using the push transitions.
 public class PushTransitionNavigationController: UINavigationController {
     private let transitionDuration: TimeInterval
     private let transitionType: PushTransitionType
     
+    /// Initializer
+    /// - Parameters:
+    ///   - transitionDuration: Transition duration
+    ///   - transitionType: The type of the animation
     public init(
         transitionDuration: TimeInterval = 0.5,
         transitionType: PushTransitionType) {
